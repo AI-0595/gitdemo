@@ -36,9 +36,23 @@ print(response.text)
 
 #============================================== NEXT ===================================
 
-
 os.environ["http_proxy"] = f"socks5://{proxy}"
 os.environ["https_proxy"] = f"socks5://{proxy}"
 
 response = requests.get("http://api4.ipify.org/?format=json")
+print(response.text)
+
+
+#============================================== NEXT ===================================
+
+
+import requests
+from cloudscraper import create_scraper
+
+proxis  = {'http':'http://'+str(proxy)} if proxy else None
+
+ses = create_scraper()
+# ses.proxies = proxis['http']
+
+response = ses.get('http://api4.ipify.org/?format=json',proxies=proxis)
 print(response.text)
